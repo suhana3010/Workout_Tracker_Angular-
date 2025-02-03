@@ -1,0 +1,50 @@
+<div>
+  <h1>FitTrack</h1>
+  <nav class="navbar">
+
+    
+    <ul class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink= "/programs"> Programs </a>
+      <a routerLink="/coaches">  Coaches </a>
+    <button class="contact-button">  Contact Us</button>
+  </ul>
+  </nav>
+  <div class="floating-elements">
+    <img *ngFor="let image of images" [src]="image.src"  class="floating-element" />
+  </div>
+  
+  
+  <app-home></app-home>
+</div>
+
+
+
+
+
+<div class="hero-section">
+  <h1>Comprehensive Training for Everyone</h1>
+  <div class="program-cards">
+    <div class="card" *ngFor="let program of programs">
+      <img [src]="program.image" alt="{{ program.title }}" />
+      <div class="card-content">
+        <h2>{{ program.title }}</h2>
+        <p>{{ program.description }}</p>
+        <button class="read-more">Read More →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<nav>
+    
+  <ul>
+    <li><a routerLink="/workouts">View Workouts</a></li>
+    <li><a routerLink="/">Home</a></li>
+  </ul>
+</nav>
+<footer>
+  <p>&copy; 2025 Workout Tracker App</p>
+</footer>

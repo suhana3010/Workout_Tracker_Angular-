@@ -1,0 +1,69 @@
+<div class="home-container">
+ 
+
+  <nav class="navbar">
+
+
+</nav>
+  
+  <div class="input-form">
+    <input [(ngModel)]="userName" placeholder="Enter User Name" />
+    <input
+      type="text"
+      [(ngModel)]="workoutType"
+      placeholder="Enter Workout Type"
+    />
+    <input
+      type="number"
+      [(ngModel)]="workoutMinutes"
+      placeholder="Enter Workout Minutes"
+    />
+
+    <button (click)="addUser()">Add Workout</button>
+  </div>
+
+  <!-- Search & Filter Section -->
+  <div class="search-filter">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Search by User Name"
+      (input)="onSearchInputChange()"
+    />
+    <select [(ngModel)]="selectedWorkoutType" (change)="onWorkoutTypeChange()">
+      <option value="">Filter by Workout Type</option>
+      <option *ngFor="let type of getFilteredWorkoutTypes()" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Workout List Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Workout Type</th>
+        <th>Minutes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of paginatedUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ getWorkoutTypes(user) }}</td>
+        <td>{{ getWorkoutMinutes(user) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Section -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>

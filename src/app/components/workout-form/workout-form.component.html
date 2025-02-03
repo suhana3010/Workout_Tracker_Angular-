@@ -1,0 +1,37 @@
+<form (ngSubmit)="addWorkout()" #workoutForm="ngForm" class="workout-form">
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>User Name</mat-label>
+    <input matInput type="text" [(ngModel)]="userName" name="userName" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Workout Type</mat-label>
+    <mat-select [(ngModel)]="workoutType" name="workoutType" required>
+      <mat-option *ngFor="let type of workoutTypes" [value]="type">{{ type }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Minutes</mat-label>
+    <input matInput type="number" [(ngModel)]="workoutMinutes" name="workoutMinutes" required />
+  </mat-form-field>
+
+  
+  <div class="button-group">
+    <button mat-raised-button color="primary" type="submit" [disabled]="workoutForm.invalid">
+      Add Workout
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="clearForm()">
+      Clear Form
+    </button>
+  </div>
+</form>
+<h2>Users and Workouts</h2>
+<div *ngFor="let user of users" class="user-card">
+  <h3>{{ user.name }}</h3>
+  <ul>
+    <li *ngFor="let workout of user.workouts">
+      {{ workout.type }} - {{ workout.minutes }} minutes
+    </li>
+  </ul>
+</div> 
